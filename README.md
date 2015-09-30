@@ -19,7 +19,7 @@ to copy this ID without the brackets--When it is added to the list, the
 brackets will be removed by a jQuery script.
 
 ##Minor Features
--Syntax checking on the client and server side
--Email verification
--Strips brackets from the discogs ID.
+* Syntax checking on the client and server side
+* Email verification
+* Strips brackets from the discogs ID.
 	(on Discogs, ids are given in the format [m123])
