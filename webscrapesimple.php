@@ -81,15 +81,15 @@
         $finalList = array();
         $finalListCount = 0;
         $arraySize = count($list);
-        for($i=0;$i < $arraySize;$i++){
-            if($list[$i][0]=="m"){
+        for($i=0;$i < $arraySize;$i++){//traverse urls with master/release ids
+            if($list[$i][0]=="m"){//if master id
                 $t = "http://www.discogs.com/sell/list?master_id=" . substr($list[$i],1) . "&limit=250";
                 if($shipping=="US")
                     $t.="&ships_from=United+States";
                 if($shipping=="UK")
                     $t.="&ships_from=United+Kingdom";
             }
-            if($list[$i][0]=="r"){
+            if($list[$i][0]=="r"){//if release id
 
                 $t = "http://www.discogs.com/sell/release/" . substr($list[$i],1) . "?ev=rb&limit=250";
                 if($shipping=="US")
@@ -138,8 +138,8 @@
         }
     }
 
-    function drawTable($x){
-        //$flag = 0;
+    function drawTable($x){//create HTML table from data
+
         $message = '<html><head><style>table, th, td {border:1px solid black;border-collapse: collapse;}';
         $message .= 'th, td {padding : 5px;}</style></head>';
         $message .= '<body>';
@@ -148,7 +148,7 @@
         $num = count($x);
         for($i=0;$i<$num;$i++){
             if($x[$i][1]>1){
-                //$flag = 1;
+                
                 $message .= '<tr><td>' . $x[$i][0] . '</td>';
                 $message .= '<td>' . $x[$i][1] . '</td>';
                 $message .= '<td>';
@@ -158,22 +158,17 @@
             }
         }
         $message .= '</table></body></html>';
-        //if($flag==0)
-            //$message = 0;
+
         return $message;
     }
 
 
-    //$L = array("m8260","m825018","m68502");
-    //$L = array("m68502");
-    //$L = array("r367084","r1766870");
+
     $L = $_REQUEST['listing'];
     $email = $_REQUEST['email'];
     $shipping = $_REQUEST['shipping'];
 
-    //$result = createResults($L,$shipping);
-    //printArray($result);
-    //echo drawTable($result);
+
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($L)) {
 
